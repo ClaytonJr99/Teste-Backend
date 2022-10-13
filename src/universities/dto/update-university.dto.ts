@@ -1,4 +1,17 @@
 import { PartialType } from '@nestjs/mapped-types';
 import { CreateUniversityDto } from './create-university.dto';
+import {IsNotEmpty, IsString, IsArray,  } from 'class-validator'
 
-export class UpdateUniversityDto extends PartialType(CreateUniversityDto) {}
+export class UpdateUniversityDto extends PartialType(CreateUniversityDto) {
+
+    @IsArray()
+    web_pages: Array<string>
+
+    @IsNotEmpty()
+    @IsString()
+    name:string
+
+    @IsNotEmpty()
+    @IsArray()
+    domains: Array<string>
+}
