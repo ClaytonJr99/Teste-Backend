@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
 import { CreateUniversityDto } from './dto/create-university.dto';
 import { UpdateUniversityDto } from './dto/update-university.dto';
 import { HttpService } from '@nestjs/axios'
@@ -15,7 +15,7 @@ export class UniversitiesService {
 
   async getUniversities() {
 
-    const countries = ["suriname", "uruguay"]
+    const countries = ["suriname"]
 
     let universities: Array<CreateUniversityDto> = []
 
@@ -93,8 +93,19 @@ export class UniversitiesService {
 
   }
 
-  create(createUniversityDto: CreateUniversityDto) {
-    return 'This action adds a new university';
+  async create(createUniversityDto: CreateUniversityDto) {
+    createUniversityDto.country = createUniversityDto.country[0].toUpperCase() + createUniversityDto.country.substr(1);
+    console.log(createUniversityDto.country);
+    
+    const foundUniversity = await this.universityModel.findOne({ country: createUniversityDto.country, stateProvince: createUniversityDto.stateProvince, name: createUniversityDto.name }).exec()
+
+    if(foundUniversity){
+      console.log(foundUniversity);
+      throw new BadRequestException('University already registered');
+    }else{
+      const createdUniversity = new this.universityModel(createUniversityDto);
+      return await createdUniversity.save();
+    }
   }
 
   async findOne(id: string) {

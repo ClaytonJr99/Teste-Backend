@@ -21,7 +21,6 @@ export class UniversitiesController {
   
   @Get()
   findAll(@Query() query: UniversityGet) {
-    
     return this.universitiesService.findAll(query);
   }
   
