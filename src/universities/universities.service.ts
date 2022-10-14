@@ -87,10 +87,6 @@ export class UniversitiesService {
           .exec();
       }
     }
-
-
-
-
   }
 
   async create(createUniversityDto: CreateUniversityDto) {
@@ -117,8 +113,13 @@ export class UniversitiesService {
     } 
   }
 
-  update(id: number, updateUniversityDto: UpdateUniversityDto) {
-    return `This action updates a #${id} university`;
+  async update(id: string, updateUniversityDto: UpdateUniversityDto) {
+    try{
+      await this.universityModel.findOneAndUpdate({ _id: id }, {$set: updateUniversityDto}).exec();
+      return{ message: `University with id: ${id} successfully updated` }
+    }catch{
+      throw new NotFoundException(`university with id ${id} not found`)
+    }
   }
 
   async remove(id: string) {
