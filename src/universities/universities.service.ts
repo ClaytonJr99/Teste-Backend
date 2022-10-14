@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateUniversityDto } from './dto/create-university.dto';
 import { UpdateUniversityDto } from './dto/update-university.dto';
 import { HttpService } from '@nestjs/axios'
@@ -97,8 +97,13 @@ export class UniversitiesService {
     return 'This action adds a new university';
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} university`;
+  async findOne(id: string) {
+    try{
+      const foundUniversity = await this.universityModel.findOne({ _id: id })
+      return foundUniversity
+    }catch{
+      throw new NotFoundException(`university with id ${id} not found`)
+    } 
   }
 
   update(id: number, updateUniversityDto: UpdateUniversityDto) {
