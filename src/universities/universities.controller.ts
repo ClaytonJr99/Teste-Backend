@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestj
 import { UniversitiesService } from './universities.service';
 import { CreateUniversityDto } from './dto/create-university.dto';
 import { UpdateUniversityDto } from './dto/update-university.dto';
+import { UniversityGet } from './interfaces/university.get.interface';
 
 @Controller('universities')
 export class UniversitiesController {
@@ -18,8 +19,9 @@ export class UniversitiesController {
   }
   
   @Get()
-  findAll() {
-    return this.universitiesService.findAll();
+  findAll(@Query() query: UniversityGet) {
+    
+    return this.universitiesService.findAll(query);
   }
   
 

@@ -5,6 +5,8 @@ import { HttpService } from '@nestjs/axios'
 import { University } from './interfaces/university.interface';
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose"
+import { UniversityGet } from './interfaces/university.get.interface';
+import { IsEmpty, isNotEmptyObject, IsNotEmptyObject } from 'class-validator';
 
 @Injectable()
 export class UniversitiesService {
@@ -29,9 +31,8 @@ export class UniversitiesService {
 
         for (let i = 0; i < universities.length; i++) {
           const foundUniversity = await this.universityModel.findOne({ country: universities[i].country, stateProvince: universities[i].stateProvince, name: universities[i].name }).exec()
-          console.log(foundUniversity);
           if (foundUniversity) {
-              continue
+            continue
           }
           const createdUniversities = await this.universityModel.insertMany(universities)
         }
@@ -40,9 +41,56 @@ export class UniversitiesService {
     return null
   }
 
-  async findAll() {
-    // return await this.universityModel.find().exec();
-    return "teste"
+  async findAll(options: UniversityGet) {
+
+    if(options.country){
+      if (isNotEmptyObject(options)) {
+        let skip = options.limit * (options.page - 1)
+        let str = options.country
+        let country = str[0].toUpperCase() + str.substr(1);
+            
+            return await this.universityModel
+              .find({country})
+              .skip(skip)
+              .limit(Number(options.limit))
+              .exec();
+          }
+          else {
+            let page = 1;
+            let limit = 4;
+            let skip = limit * (page - 1)
+      
+            return await this.universityModel
+              .find()
+              .skip(skip)
+              .limit(Number(limit))
+              .exec();
+          }
+    }else{
+      if (isNotEmptyObject(options)) {
+        let skip = options.limit * (options.page - 1)
+        return await this.universityModel
+          .find()
+          .skip(skip)
+          .limit(Number(options.limit))
+          .exec();
+      }
+      else {
+        let page = 1;
+        let limit = 20;
+        let skip = limit * (page - 1)
+  
+        return await this.universityModel
+          .find()
+          .skip(skip)
+          .limit(Number(limit))
+          .exec();
+      }
+    }
+
+
+
+
   }
 
   create(createUniversityDto: CreateUniversityDto) {
