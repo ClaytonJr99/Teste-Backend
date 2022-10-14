@@ -110,7 +110,12 @@ export class UniversitiesService {
     return `This action updates a #${id} university`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} university`;
+  async remove(id: string) {
+    try{
+      await this.universityModel.deleteOne({ _id: id }).exec();
+      return {message: `university with id ${id} was deleted successfully`}
+    }catch{
+      throw new NotFoundException(`university with id ${id} not found`)
+    }
   }
 }

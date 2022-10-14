@@ -25,10 +25,9 @@ export class UniversitiesController {
     return this.universitiesService.findAll(query);
   }
   
-
   @Get(':id')
-  async findOne(@Param('id') id: string) {
-      return await this.universitiesService.findOne(id);
+  findOne(@Param('id') id: string) {
+    return this.universitiesService.findOne(id);
   }
 
   @Patch(':id')
@@ -38,6 +37,6 @@ export class UniversitiesController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.universitiesService.remove(+id);
+    return this.universitiesService.remove(id);
   }
 }
