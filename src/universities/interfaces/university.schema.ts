@@ -7,8 +7,8 @@ export const UniversitySchema = new mongoose.Schema({
     country: String,
     domains: Array,
     stateProvince: String,
-}, {timestamps: true, collection: 'universities'})
+}, { collection: 'universities'})
 
 export const ConfigSchema = new mongoose.Schema({
     database_loaded: Boolean,
-}, { timestamps: true, collection: 'config' })
+}, { collection: 'config' })
