@@ -2,7 +2,7 @@ import { Injectable, NotFoundException, BadRequestException } from '@nestjs/comm
 import { CreateUniversityDto } from './dto/create-university.dto';
 import { UpdateUniversityDto } from './dto/update-university.dto';
 import { HttpService } from '@nestjs/axios'
-import { University } from './interfaces/university.interface';
+import { Config, University } from './interfaces/university.interface';
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose"
 import { UniversityGet } from './interfaces/university.get.interface';
@@ -11,34 +11,37 @@ import { IsEmpty, isNotEmptyObject, IsNotEmptyObject } from 'class-validator';
 @Injectable()
 export class UniversitiesService {
 
-  constructor(@InjectModel('University') private readonly universityModel: Model<University>, private readonly httpService: HttpService) { }
+  constructor(
+    @InjectModel('University') 
+    private readonly universityModel: Model<University>,
+    @InjectModel('Config') 
+    private readonly configModel: Model<Config>, 
+    private readonly httpService: HttpService) { }
 
   async getUniversities() {
+    const databaseIsLoaded = await this.configModel.findOne({ database_loaded: true });
+    if (databaseIsLoaded) {
+      throw new BadRequestException()
+    }
 
-    const countries = ["suriname"]
-
-    let universities: Array<CreateUniversityDto> = []
+    const countries = ["suriname", "uruguay"]
+    let universities = []
 
     for (let countrie of countries) {
-
       let url = `http://universities.hipolabs.com/search?country=${countrie}`
-
       const { status, data } = await this.httpService.get(url).toPromise()
 
-      if (status == 200) {
-
-        universities = data
-
-        for (let i = 0; i < universities.length; i++) {
-          const foundUniversity = await this.universityModel.findOne({ country: universities[i].country, stateProvince: universities[i].stateProvince, name: universities[i].name }).exec()
-          if (foundUniversity) {
-            continue
-          }
-          const createdUniversities = await this.universityModel.insertMany(universities)
-        }
+      if (status != 200) {
+        throw new BadRequestException()
       }
+
+      universities = [...universities, ...data]
     }
-    return null
+
+    await this.universityModel.insertMany(universities)
+    await this.configModel.create({ database_loaded: true })
+
+    return universities
   }
 
   async findAll(options: UniversityGet) {

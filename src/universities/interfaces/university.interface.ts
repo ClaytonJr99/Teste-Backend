@@ -9,3 +9,8 @@ export interface University extends Document {
     domains: Array<string>,
     stateProvince: String,
 }
+
+export interface Config extends Document {
+    readonly _id: String;
+    database_loaded: Boolean;
+}
