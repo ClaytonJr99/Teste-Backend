@@ -3,7 +3,6 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { UniversitiesModule } from './universities/universities.module';
 import { ConfigModule } from '@nestjs/config';
 
-
 @Module({
   imports: [
     ConfigModule.forRoot(),
@@ -11,4 +10,4 @@ import { ConfigModule } from '@nestjs/config';
     UniversitiesModule,
   ],
 })
-export class AppModule { }
+export class AppModule {}

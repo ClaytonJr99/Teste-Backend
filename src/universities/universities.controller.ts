@@ -1,8 +1,16 @@
-import { Controller, Get, Post, Body, Put, Param, Delete, Query, NotFoundException } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Put,
+  Param,
+  Delete,
+  Query,
+} from '@nestjs/common';
 import { UniversitiesService } from './universities.service';
 import { CreateUniversityDto } from './dto/create-university.dto';
 import { UpdateUniversityDto } from './dto/update-university.dto';
-
 
 @Controller('universities')
 export class UniversitiesController {
@@ -14,22 +22,25 @@ export class UniversitiesController {
   }
 
   @Get('find')
-  getUniversities(){
-    return this.universitiesService.getUniversities()
+  getUniversities() {
+    return this.universitiesService.getUniversities();
   }
-  
+
   @Get()
   findAll(@Query() query) {
     return this.universitiesService.findAll(query);
   }
-  
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.universitiesService.findOne(id);
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() updateUniversityDto: UpdateUniversityDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateUniversityDto: UpdateUniversityDto,
+  ) {
     return this.universitiesService.update(id, updateUniversityDto);
   }
 

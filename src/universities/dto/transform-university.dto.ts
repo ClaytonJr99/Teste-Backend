@@ -1,46 +1,43 @@
-
 export class UniversityDocument {
+  alphaTwoCode: string;
 
-    alphaTwoCode: string;
+  webPages: Array<string>;
 
-    webPages: Array<string>;
+  name: string;
 
-    name: string;
+  country: string;
 
-    country: string;
+  domains: Array<string>;
 
-    domains: Array<string>;
-
-    stateProvince: string;
+  stateProvince: string;
 }
 
-export class UniversityDto{
+export class UniversityDto {
+  alpha_two_code: string;
 
-    alpha_two_code: string;
+  web_pages: Array<string>;
 
-    web_pages: Array<string>;
+  name: string;
 
-    name: string;
+  country: string;
 
-    country: string;
+  domains: Array<string>;
 
-    domains: Array<string>;
+  'state-province': string;
 
-    "state-province": string;
+  toDocument(): UniversityDocument {
+    return {
+      alphaTwoCode: this.alpha_two_code,
 
-    toDocument(): UniversityDocument{
-        return {
-            alphaTwoCode: this.alpha_two_code,
+      webPages: this.web_pages,
 
-            webPages: this.web_pages,
-        
-            name: this.name,
-        
-            country: this.country,
-        
-            domains: this.domains,
+      name: this.name,
 
-            stateProvince: this["state-province"]
-        }
-    }
+      country: this.country,
+
+      domains: this.domains,
+
+      stateProvince: this['state-province'],
+    };
+  }
 }
