@@ -1,7 +1,6 @@
 import {IsNotEmpty, IsString, Min, Max, IsArray,  } from 'class-validator'
 
 export class CreateUniversityDto {
-
     @IsNotEmpty()
     @IsString()
     @Min(2)

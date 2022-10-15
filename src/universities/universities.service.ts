@@ -25,7 +25,7 @@ export class UniversitiesService {
       throw new BadRequestException('database is already populated')
     }
 
-    const countries = ["suriname", "uruguay"]
+    const countries = ["suriname"]
 
     let universitiesResponse: UniversityDto[] = []
 
@@ -60,7 +60,7 @@ export class UniversitiesService {
     let regex = country ? { country: new RegExp("^" + country + "$", "i") } : {};
     let skip = limit * (page - 1)
     return await this.universityModel
-      .find(regex)
+      .find(regex, 'name country stateProvince')
       .skip(skip)
       .limit(limit)
       .exec()
@@ -81,7 +81,7 @@ export class UniversitiesService {
 
   async findOne(id: string) {
   try {
-    const foundUniversity = await this.universityModel.findOne({ _id: id })
+    const foundUniversity = await this.universityModel.findOne({ _id: id }, '-__v')
     return foundUniversity
   } catch {
     throw new NotFoundException(`university with id ${id} not found`)
@@ -90,7 +90,8 @@ export class UniversitiesService {
 
   async update(id: string, updateUniversityDto: UpdateUniversityDto) {
   try {
-    await this.universityModel.findOneAndUpdate({ _id: id }, { $set: updateUniversityDto }).exec();
+
+    await this.universityModel.updateOne({ _id: id }, { $set: updateUniversityDto }).exec();
     return { message: `University with id: ${id} successfully updated` }
   } catch {
     throw new NotFoundException(`university with id ${id} not found`)
