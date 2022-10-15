@@ -2,7 +2,6 @@ import { Controller, Get, Post, Body, Put, Param, Delete, Query, NotFoundExcepti
 import { UniversitiesService } from './universities.service';
 import { CreateUniversityDto } from './dto/create-university.dto';
 import { UpdateUniversityDto } from './dto/update-university.dto';
-import { UniversityGet } from './interfaces/university.get.interface';
 
 
 @Controller('universities')
@@ -20,7 +19,7 @@ export class UniversitiesController {
   }
   
   @Get()
-  findAll(@Query() query: UniversityGet) {
+  findAll(@Query() query) {
     return this.universitiesService.findAll(query);
   }
   

@@ -1,15 +1,14 @@
-import {IsNotEmpty, IsString, Min, Max, IsArray,  } from 'class-validator'
+import {IsNotEmpty, IsString, Min, Max, IsArray, Length } from 'class-validator'
 
 export class CreateUniversityDto {
     @IsNotEmpty()
     @IsString()
-    @Min(2)
-    @Max(2)
-    alpha_two_code: string
+    @Length(2, 2)
+    alphaTwoCode: string
 
     @IsNotEmpty()
     @IsArray()
-    web_pages: Array<string>
+    webPages: Array<string>
 
     @IsNotEmpty()
     @IsString()
@@ -23,6 +22,5 @@ export class CreateUniversityDto {
     @IsArray()
     domains: Array<string>
 
-    @IsString()
     stateProvince: string
 }

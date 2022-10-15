@@ -5,8 +5,6 @@ import { HttpService } from '@nestjs/axios'
 import { Config, University } from './interfaces/university.interface';
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose"
-import { UniversityGet } from './interfaces/university.get.interface';
-import { IsEmpty, isNotEmptyObject, IsNotEmptyObject } from 'class-validator';
 import { UniversityDto } from './dto/transform-university.dto';
 
 @Injectable()
@@ -49,14 +47,14 @@ export class UniversitiesService {
       stateProvince: x["state-province"]
     }))
 
-    const salvado = await this.universityModel.insertMany(universities)
+    const saved = await this.universityModel.insertMany(universities)
     await this.configModel.create({ database_loaded: true })
 
-    return salvado
+    return saved
   }
 
 
-  async findAll({ page = 1, limit = 20, country }: UniversityGet) {
+  async findAll({ page = 1, limit = 20, country }) {
     let regex = country ? { country: new RegExp("^" + country + "$", "i") } : {};
     let skip = limit * (page - 1)
     return await this.universityModel
@@ -75,7 +73,19 @@ export class UniversitiesService {
     throw new BadRequestException('University already registered');
   } else {
     const createdUniversity = new this.universityModel(createUniversityDto);
-    return await createdUniversity.save();
+    let returnedValue = await createdUniversity.save();
+    
+    let { alphaTwoCode, webPages, name, country, domains, stateProvince } = returnedValue
+
+    return{
+      alphaTwoCode, 
+      webPages, 
+      name, 
+      country, 
+      domains, 
+      stateProvince
+    }
+    
   }
 }
 

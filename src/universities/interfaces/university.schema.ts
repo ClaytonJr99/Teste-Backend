@@ -1,8 +1,8 @@
 import * as mongoose from 'mongoose';
 
 export const UniversitySchema = new mongoose.Schema({
-    alpha_two_code: String,
-    web_pages: Array,
+    alphaTwoCode: String,
+    webPages: Array,
     name: String,
     country: String,
     domains: Array,

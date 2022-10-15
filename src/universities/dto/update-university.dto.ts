@@ -5,7 +5,7 @@ import {IsNotEmpty, IsString, IsArray,  } from 'class-validator'
 export class UpdateUniversityDto extends PartialType(CreateUniversityDto) {
 
     @IsArray()
-    web_pages: Array<string>
+    webPages: Array<string>
 
     @IsNotEmpty()
     @IsString()
