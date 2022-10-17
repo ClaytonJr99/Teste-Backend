@@ -62,10 +62,10 @@ export class UniversitiesService {
       stateProvince: x['state-province'],
     }));
 
-    const saved = await this.universityModel.insertMany(universities);
+    await this.universityModel.insertMany(universities);
     await this.configModel.create({ database_loaded: true });
 
-    return saved;
+    return { message: 'Database successfully populated' };
   }
 
   async findAll({ page = 1, limit = 20, country }) {
