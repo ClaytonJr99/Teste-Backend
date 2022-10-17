@@ -73,3 +73,19 @@ http://localhost:3000/universities/id
 Essa rota permite excluir uma universidade da base de dados
 
 O id da universidade deve ser passado como parâmetro na URL
+
+
+### -Atualizar uma universidade:
+```bash
+Método Put
+http://localhost:3000/universities/id
+```
+Essa rota permite atualizar os dados de uma universidade já cadastrada
+
+O id da universidade deve ser passado como parâmetro na URL
+
+É necessário informar os dados pelo body da requisição: webPages, name, domains
+
+A descrição e especificação dos campos está documentada no Swagger
+
+
