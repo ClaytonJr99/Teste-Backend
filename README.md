@@ -38,6 +38,6 @@ http://localhost:3000/universities
 ```
 Essa roda busca por todas as universidades salvas. 
 Possui paginação e é possivel altera-la pela URL com os query params 'page' e 'limit'
-Também é possivel buscar por todas as universidades de um certo país. Para tal ação, é necessário informar o país pelos query params. Exemplo: country=argentina
+Também é possivel buscar por todas as universidades de um certo país. Para tal ação, é necessário informar o país pelos query params na url. Exemplo: country=argentina
 
 
