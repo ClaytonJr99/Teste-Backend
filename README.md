@@ -4,7 +4,7 @@
 
 
 
-### Descrição
+## Descrição
 Api para buscar as universidades de certos países
 
 
@@ -22,7 +22,7 @@ A aplicação está conteinerizada pelo docker, então com apenas esse comando, 
 O projeto está documentado pelo Swagger. 
 Para acessar a documentação, basta rodar a aplicação e acessar a rota http://localhost:3000/api do navegador
 
--Popular o banco de dados:
+### Popular o banco de dados:
 ```bash
 Método Get
 http://localhost:3000/universities/find
