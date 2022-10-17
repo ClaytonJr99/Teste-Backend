@@ -99,10 +99,18 @@ export class UniversitiesService {
       const createdUniversity = new this.universityModel(createUniversityDto);
       let returnedValue = await createdUniversity.save();
 
-      let { alphaTwoCode, webPages, name, country, domains, stateProvince } =
-        returnedValue;
+      let {
+        _id,
+        alphaTwoCode,
+        webPages,
+        name,
+        country,
+        domains,
+        stateProvince,
+      } = returnedValue;
 
       return {
+        _id,
         alphaTwoCode,
         webPages,
         name,
