@@ -19,7 +19,8 @@ A aplicação está conteinerizada pelo docker, então com apenas esse comando, 
 ```
 
 ## Rotas
-O projeto está documentado pelo Swagger. 
+O projeto está documentado pelo Swagger
+
 Para acessar a documentação, basta rodar a aplicação e acessar a rota http://localhost:3000/api do navegador
 
 
@@ -36,8 +37,10 @@ Essa rota utiliza uma API externa e popula o banco de dados com a resposta receb
 Método Get
 http://localhost:3000/universities
 ```
-Essa roda busca por todas as universidades e mostra seus dados salvos. 
+Essa roda busca por todas as universidades e mostra seus dados salvos.
+
 Possui paginação e é possivel altera-la pela URL com os query params 'page' e 'limit'
+
 Também é possivel buscar por todas as universidades de um certo país. Para tal ação, é necessário informar o país pelos query params na url. Exemplo: country=argentina
 
 ### -Buscar uma universidade:
@@ -46,6 +49,7 @@ Método Get
 http://localhost:3000/universities/id
 ```
 Essa rota busca uma unica universidade e mostra seus dados salvos
+
 O id da universidade deve ser passado como parâmetro na URL
 
 
