@@ -55,6 +55,8 @@ Método Post
 http://localhost:3000/universities
 ```
 Essa rota permite salvar uma nova universidade na base de dados
+
 É necessário informar os dados pelo body da requisição: alphaTwoCode, webPages, name, country, domains, stateProvince
+
 A descrição e especificação dos campos, está documentada no Swagger
 
