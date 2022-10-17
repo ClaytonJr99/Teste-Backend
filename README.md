@@ -23,7 +23,7 @@ O projeto está documentado pelo Swagger.
 Para acessar a documentação, basta rodar a aplicação e acessar a rota http://localhost:3000/api do navegador
 
 
-### Popular o banco de dados:
+### --Popular o banco de dados:
 ```bash
 Método Get
 http://localhost:3000/universities/find
@@ -31,7 +31,7 @@ http://localhost:3000/universities/find
 Essa rota utiliza uma API externa e popula o banco de dados com a resposta recebida
 
 
-### Buscar universidades:
+### --Buscar universidades:
 ```bash
 Método Get
 http://localhost:3000/universities
@@ -40,7 +40,7 @@ Essa roda busca por todas as universidades e mostra seus dados salvos.
 Possui paginação e é possivel altera-la pela URL com os query params 'page' e 'limit'
 Também é possivel buscar por todas as universidades de um certo país. Para tal ação, é necessário informar o país pelos query params na url. Exemplo: country=argentina
 
-### Buscar um universidade:
+### --Buscar um universidade:
 ```bash
 Método Get
 http://localhost:3000/universities/id
