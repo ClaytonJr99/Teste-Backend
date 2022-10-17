@@ -46,6 +46,6 @@ Método Get
 http://localhost:3000/universities/id
 ```
 Essa rota busca uma unica universidade e mostra seus dados salvos
-O id da universidade deve ser passado como parametro na URL
+O id da universidade deve ser passado como parâmetro na URL
 
 
