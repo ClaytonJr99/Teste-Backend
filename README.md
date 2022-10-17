@@ -27,5 +27,15 @@ Para acessar a documentação, basta rodar a aplicação e acessar a rota http:/
 Método Get
 http://localhost:3000/universities/find
 ```
-Essa rota, utiliza uma API externa e popula o banco de dados com a resposta recebida
+Essa rota utiliza uma API externa e popula o banco de dados com a resposta recebida
+
+### Buscar universidades:
+```bash
+Método Get
+http://localhost:3000/universities
+```
+Essa roda busca por todas as universidades salvas. 
+Possui paginação e é possivel altera-la pela URL com os query params 'page' e 'limit'
+Também é possivel buscar por todas as universidades de um certo país. Para tal ação, é necessário informar o país pelos query params. Exemplo: country=argentina
+
 
