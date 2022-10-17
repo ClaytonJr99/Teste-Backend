@@ -22,5 +22,10 @@ A aplicação está conteinerizada pelo docker, então com apenas esse comando, 
 O projeto está documentado pelo Swagger. 
 Para acessar a documentação, basta rodar a aplicação e acessar a rota http://localhost:3000/api do navegador
 
-#te
+-Popular o banco de dados:
+```bash
+Método Get
+http://localhost:3000/universities/find
+```
+Essa rota, utiliza uma API externa e popula o banco de dados com a resposta recebida
 
