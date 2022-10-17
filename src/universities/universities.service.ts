@@ -29,7 +29,16 @@ export class UniversitiesService {
       throw new BadRequestException('database is already populated');
     }
 
-    const countries = ['suriname'];
+    const countries = [
+      'argentina',
+      'brasil',
+      'chile',
+      'colombia',
+      'paraguai',
+      'peru',
+      'suriname',
+      'uruguay',
+    ];
 
     let universitiesResponse: UniversityDto[] = [];
 
