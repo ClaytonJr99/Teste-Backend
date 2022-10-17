@@ -19,7 +19,7 @@ A aplicação está conteinerizada pelo docker, então com apenas esse comando, 
 
 
 ## Rotas
-O projeto está documentado pelo Swagger
+### O projeto está documentado pelo Swagger, toda especificação e descrição está datalhada nele
 
 Para acessar a documentação, basta rodar a aplicação e acessar a rota http://localhost:3000/api do navegador
 
