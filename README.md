@@ -13,7 +13,7 @@ Api para buscar as universidades de certos países
 
 É necessário possuir o Docker instalado.
 
-Após clonar o repositório, para rodar a aplicação é necessário rodar apenas o comando docker-compose up
+Após clonar o repositório, para rodar a aplicação é necessário rodar apenas o comando ```bash docker-compose up ```
 
 A aplicação está conteinerizada pelo docker, então com apenas esse comando, tudo será instalado de forma automatica e o servidor da aplicação já estará funcionando
 
