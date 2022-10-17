@@ -18,3 +18,9 @@ Após clonar o repositório, é necessário rodar apenas o comando docker-compos
 A aplicação está conteinerizada pelo docker, então com apenas esse comando, tudo será instalado de forma automatica e o servidor da aplicação já estará funcionando
 ```
 
+## Rotas
+O projeto está documentado pelo Swagger. 
+Para acessar a documentação, basta rodar a aplicação e acessar a rota http://localhost:3000/api do navegador
+
+#te
+
