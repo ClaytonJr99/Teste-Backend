@@ -1,8 +1,29 @@
-version: '3'
 services:
+  main:
+    container_name: main
+    build:
+      context: .
+      target: development
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - 3000:3000
+    command: npm run start:dev
+    environment:
+      - DB_URL=mongodb://mongodb:27017/db
+    networks:
+      - webnet
+    depends_on:
+      - mongodb
   mongodb:
+    container_name: mongodb
     image: mongo
+    networks:
+      - webnet
     environment:
       - MONGODB_DATABASE="db"
     ports:
       - 27017:27017
+networks:
+  webnet:
