@@ -40,7 +40,7 @@ Essa roda busca por todas as universidades e mostra seus dados salvos.
 Possui paginação e é possivel altera-la pela URL com os query params 'page' e 'limit'
 Também é possivel buscar por todas as universidades de um certo país. Para tal ação, é necessário informar o país pelos query params na url. Exemplo: country=argentina
 
-### -Buscar um universidade:
+### -Buscar uma universidade:
 ```bash
 Método Get
 http://localhost:3000/universities/id
@@ -48,4 +48,13 @@ http://localhost:3000/universities/id
 Essa rota busca uma unica universidade e mostra seus dados salvos
 O id da universidade deve ser passado como parâmetro na URL
 
+
+### -Criar uma universidade:
+```bash
+Método Post
+http://localhost:3000/universities
+```
+Essa rota permite salvar uma nova universidade na base de dados
+É necessário informar os dados pelo body da requisição: alphaTwoCode, webPages, name, country, domains, stateProvince
+A descrição e especificação dos campos, está documentada no Swagger
 
