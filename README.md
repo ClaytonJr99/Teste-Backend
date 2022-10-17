@@ -62,5 +62,14 @@ Essa rota permite salvar uma nova universidade na base de dados
 
 É necessário informar os dados pelo body da requisição: alphaTwoCode, webPages, name, country, domains, stateProvince
 
-A descrição e especificação dos campos, está documentada no Swagger
+A descrição e especificação dos campos está documentada no Swagger
 
+
+### -Deletar uma universidade:
+```bash
+Método Delete
+http://localhost:3000/universities/id
+```
+Essa rota permite excluir uma universidade da base de dados
+
+O id da universidade deve ser passado como parâmetro na URL
